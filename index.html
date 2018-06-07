@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>JSON2CSV</title>
+    <meta name="author" content="Sem Postma">
+    <meta name="description" content="Converts CSV markup to JSON and back">
+    <meta name="keywords" content="html2js, html, js, convert, javascript">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootswatch/3.3.7/simplex/bootstrap.min.css" rel="stylesheet" integrity="sha384-C0X5qw1DlkeV0RDunhmi4cUBUkPDTvUqzElcNWm1NI2T4k8tKMZ+wRPQOhZfSJ9N"
+        crossorigin="anonymous">
+
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-112439526-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-112439526-7');
+    </script>
+    <style>
+        textarea {
+            resize: vertical;
+        }
+
+        body {
+            position: relative;
+        }
+
+        * {
+            outline: none;
+        }
+
+        footer {
+            border-top: 40px solid #fff;
+            background: #ddd;
+            z-index: 1000;
+            position: relative;
+            padding: 100px 0;
+            font-size: 15px;
+        }
+
+        footer ul {
+            list-style: none;
+            padding-left: 0;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#navbar-scrollspy" data-offset="40">
+    <header>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container" id="navbar-scrollspy">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                        aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#top">TOP</a>
+                        </li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#json2csv">JSON2CSV</a>
+                        </li>
+                        <li>
+                            <a href="#csv2json">CSV2JSON</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="jumbotron text-center" id="top">
+            <div class="container">
+                <h1>CSV to JSON</h1>
+                <p>
+                    <small class="muted">(and back)</small>
+                </p>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <section id="json2csv">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">JSON2CSV</h3>
+                            </div>
+                            <div class="container-fluid" style="padding: 12px;">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="json-input">JSON:</label>
+                                            <textarea class="form-control" rows="25" id="json-input">{}</textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="csv-output">Output:</label>
+                                            <textarea readonly class="form-control" rows="25" id="csv-output"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col col-xs-12">
+                                        <button class="btn btn-primary" id="json2csvgo">Convert</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-xs-12">
+                    <section id="csv2json">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">CSV2JSON</h3>
+                            </div>
+                            <div class="container-fluid" style="padding: 12px;">
+                                <div class="row">
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="csv-input">CSV:</label>
+                                            <textarea class="form-control" rows="25" id="csv-input">name,age
+John,47
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-md-6">
+                                        <div class="form-group">
+                                            <label for="json-output">Output:</label>
+                                            <textarea readonly class="form-control" rows="25" id="json-output"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col col-xs-12">
+                                        <button class="btn btn-primary" id="csv2jsongo">Convert</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+    <footer>
+        <div class="container text-white">
+            <div class="row">
+                <div class="col-sm-4 col-xs-12">
+                    <p>
+                    </p>
+                    <h2>Project :</h2>
+                    <p></p>
+                    <p>Animated
+                        <a target="_blank" href="https://cssicon.space/#/">Css Icons</a> by
+                        <a target="_blank" href="https://twitter.com/DesignJokes">Wenting Zhang</a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://ksp-part-catalog.space">KSP Part catalog</a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://json-gui.site">JSON Gui</a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://bunkersem.github.io/mouse-mania/">Mouse mania</a>
+                    </p>
+                    <p>
+                        <a href="https://protected-url.herokuapp.com/" target="_blank">Protected url</a>
+                    </p>
+                    <p>
+                        <a href="https://html2js.esstudio.site/" target="_blank">HTML2JS</a>
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <p>
+                    </p>
+                    <h2>Other :</h2>
+                    <p></p>
+                    <p>
+                        <a href="_blank">Github</a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://www.youtube.com/user/9Wereld/videos">Youtube</a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://bunkersem.github.io/portfolio/">My Portfolio</a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://play.google.com/store/apps/developer?id=EchoSierraStudio">Apps</a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://sketchfab.com/Afirus">Sketchfab</a>
+                    </p>
+                    <p>
+                        <a target="_blank" href="https://www.sololearn.com/Profile/1157573">SoloLearn</a>
+                    </p>
+                    <p>
+                        <a href="https://esstudio.site" target="_blank">All Projects</a>
+                    </p>
+                </div>
+                <div class="col-sm-4 col-xs-12">
+                    <p>
+                    </p>
+                    <h2>Social :
+                    </h2>
+                    <h2>
+                        <p></p>
+                        <div>
+                            <ul class="social-media-list">
+                                <li>
+                                    <a href="https://github.com/bunkersem">
+                                        <span class="username">bunkersem</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="https://youtube.com/9Wereld">
+                                        <span class="username">9Wereld</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="smoothscroll.js"></script>
+    <script src="obj2csv.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
